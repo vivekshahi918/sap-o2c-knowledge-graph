@@ -11,7 +11,7 @@ const App = () => {
   const [selectedNode, setSelectedNode] = useState(null);
   const [highlights, setHighlights] = useState([]);
   const fgRef = useRef();
-  const API_BASE = "https://sap-o2c-backend.onrender.com";
+  const API_BASE = "https://sap-o2c-knowledge-graph-1.onrender.com";
 
   useEffect(() => {
     axios.get(`${API_BASE}/graph-data`).then(res => {
