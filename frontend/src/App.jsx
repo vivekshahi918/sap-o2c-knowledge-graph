@@ -11,6 +11,7 @@ const App = () => {
   const [selectedNode, setSelectedNode] = useState(null);
   const [highlights, setHighlights] = useState([]);
   const fgRef = useRef();
+  const API_BASE = "https://sap-o2c-backend.onrender.com";
 
   useEffect(() => {
     axios.get(`${API_BASE}/graph-data`).then(res => {
@@ -34,7 +35,6 @@ const App = () => {
   const handleAsk = async () => {
     if (!input || loading) return;
     const q = input;
-    const API_BASE = "https://sap-o2c-backend.onrender.com";
     setChat(p => [...p, { role: 'user', text: q }]);
     setInput('');
     setLoading(true);
