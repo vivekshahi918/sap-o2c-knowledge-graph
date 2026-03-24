@@ -13,7 +13,7 @@ const App = () => {
   const fgRef = useRef();
 
   useEffect(() => {
-    axios.get('http://localhost:8000/graph-data').then(res => {
+    axios.get(`${API_BASE}/graph-data`).then(res => {
       const nodes = [], links = [], seen = new Set();
       res.data.forEach(row => {
         if (!seen.has(row.source_id)) {
@@ -34,11 +34,12 @@ const App = () => {
   const handleAsk = async () => {
     if (!input || loading) return;
     const q = input;
+    const API_BASE = "https://sap-o2c-backend.onrender.com";
     setChat(p => [...p, { role: 'user', text: q }]);
     setInput('');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:8000/ask', { question: q });
+      const res = await axios.post(`${API_BASE}/ask`, { question: q });
       setChat(p => [...p, { role: 'ai', text: res.data.answer }]);
       setHighlights(res.data.affected_node_ids || []);
     } catch {
